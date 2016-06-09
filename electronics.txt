@@ -1,0 +1,6 @@
+Fridge:1:Samsung fridge:200:39:30x35x160:2:35
+Vacuum cleaner:2:Panasonic cleaner:25:15:2
+Washing machine:3:Ariston washing machine:55:28:30x30x50:8:4.5
+TV:4:Samsung Android LED TV:76:11:75:200
+Laptop:5:ASUS laptop:990:20:17:512
+Fridge:6:Unknown fridge:111.0:10.0:20x20x20:1:15.0
