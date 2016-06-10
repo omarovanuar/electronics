@@ -1,6 +1,6 @@
 package com.epam.electronics.datareader;
 
-import com.epam.electronics.electronic_name.Name;
+import com.epam.electronics.entity.electronic_name.Name;
 import com.epam.electronics.entity.Electronic;
 import com.epam.electronics.entity.ElectronicFactory;
 
@@ -8,10 +8,13 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class DBReader implements ReaderInterface {
     private static final String[] SQL_STATEMENT = {"SELECT * FROM fridge", "SELECT * FROM vacuum_cleaner", "SELECT * FROM washing_machine", "SELECT * FROM tv", "SELECT * FROM laptop"};
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/electronic_db";
+    private static final String USER = "root";
+    private static final String PASS = "adminroot";
 
     @Override
     public List<Electronic> readData() throws IOException {
@@ -40,20 +43,15 @@ public class DBReader implements ReaderInterface {
     }
 
     private Connection getConnection() {
-        ResourceBundle rb = ResourceBundle.getBundle("database");
-        String driver = rb.getString("driver");
-        String url = rb.getString("dbURL");
-        String user = rb.getString("user");
-        String password = rb.getString("password");
         try {
-            Class.forName(driver);
+            Class.forName(DRIVER);
             System.out.println("OK");
         } catch (ClassNotFoundException e) {
             System.out.println("JDBC driver not found");
         }
         Connection con = null;
         try {
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(URL, USER, PASS);
             System.out.println("Connect");
         } catch (SQLException e) {
             System.out.println("SQLException " + e.getMessage());
