@@ -1,7 +1,8 @@
 package com.epam.electronics.parser;
 
-import com.epam.electronics.entity.Electronic;
-import com.epam.electronics.entity.ElectronicFactory;
+import com.epam.electronics.entity.*;
+import com.epam.electronics.entity.electronic_name.Name;
+import com.epam.electronics.exception.InvalidNewItemException;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -10,11 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epam.electronics.entity.electronic_name.Name.*;
+
 public class ElectronicSAXParser extends DefaultHandler{
     private List<Electronic> list = new ArrayList<>();
-    private String[] electronic = new String[8];
+    private Electronic electronic;
+    private Name type;
     private StringBuilder thisElement;
-    private int i;
 
     @Override
     public void startDocument() throws SAXException {
@@ -26,8 +29,26 @@ public class ElectronicSAXParser extends DefaultHandler{
                              String qName, Attributes atts) throws SAXException {
         thisElement = new StringBuilder();
         if (qName.equals("electronic")) {
-            i = 0;
-            electronic[i] = atts.getValue("type");
+            type = Name.valueOf(atts.getValue("type").toUpperCase());
+            switch (type) {
+                case FRIDGE:
+                    electronic = new Fridge();
+                    break;
+                case VACUUMCLEANER:
+                    electronic = new VacuumCleaner();
+                    break;
+                case WASHINGMACHINE:
+                    electronic = new WashingMachine();
+                    break;
+                case TV:
+                    electronic = new TV();
+                    break;
+                case LAPTOP:
+                    electronic = new Laptop();
+                    break;
+                default:
+                    throw new RuntimeException();
+            }
         }
     }
 
@@ -35,39 +56,54 @@ public class ElectronicSAXParser extends DefaultHandler{
     public void endElement(String namespaceURI, String localName, String qName)
             throws SAXException {
         if (qName.equals("electronic")) {
-            try {
-                list.add(ElectronicFactory.createFromFile(electronic));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+                list.add(electronic);
         } else {
             String elementVal = thisElement.toString();
             if (qName.equals("id")) {
-                electronic[++i] = elementVal;
+                electronic.setId(Integer.parseInt(elementVal));
             } else if (qName.equals("title")) {
-                electronic[++i] = elementVal;
+                electronic.setTitle(elementVal);
             } else if (qName.equals("price")) {
-                electronic[++i] = elementVal;
+                electronic.setPrice(Double.parseDouble(elementVal));
             } else if (qName.equals("powercapacity")) {
-                electronic[++i] = elementVal;
+                electronic.setPowerCapacity(Double.parseDouble(elementVal));
             } else if (qName.equals("dimension")) {
-                electronic[++i] = elementVal;
+                if (type.equals(FRIDGE)) {
+                    Fridge fridge = (Fridge) electronic;
+                    fridge.setDimension(elementVal);
+                } else if (type.equals(WASHINGMACHINE)){
+                    WashingMachine washingMachine = (WashingMachine) electronic;
+                    washingMachine.setDimension(elementVal);
+                }
             } else if (qName.equals("section")) {
-                electronic[++i] = elementVal;
+                Fridge fridge = (Fridge) electronic;
+                fridge.setSectionNumber(Integer.parseInt(elementVal));
             } else if (qName.equals("freezetime")) {
-                electronic[++i] = elementVal;
+                Fridge fridge = (Fridge) electronic;
+                fridge.setFreezeTime(Double.parseDouble(elementVal));
             } else if (qName.equals("dustcc")) {
-                electronic[++i] = elementVal;
+                VacuumCleaner vacuumCleaner = (VacuumCleaner) electronic;
+                vacuumCleaner.setDustCollectorCapacity(Double.parseDouble(elementVal));
             } else if (qName.equals("functions")) {
-                electronic[++i] = elementVal;
+                WashingMachine washingMachine = (WashingMachine) electronic;
+                washingMachine.setFunctionsNumber(Integer.parseInt(elementVal));
             } else if (qName.equals("maxLinenWeight")) {
-                electronic[++i] = elementVal;
+                WashingMachine washingMachine = (WashingMachine) electronic;
+                washingMachine.setMaxLinenWeight(Double.parseDouble(elementVal));
             } else if (qName.equals("diagonal")) {
-                electronic[++i] = elementVal;
+                if (type.equals(TV)) {
+                    TV tv = (TV) electronic;
+                    tv.setDiagonal(Double.parseDouble(elementVal));
+                } else if (type.equals(LAPTOP)){
+                    Laptop laptop = (Laptop) electronic;
+                    laptop.setDiagonal(Double.parseDouble(elementVal));
+                }
             } else if (qName.equals("brightness")) {
-                electronic[++i] = elementVal;
+                TV tv = (TV) electronic;
+                tv.setBrightness(Double.parseDouble(elementVal));
             } else if (qName.equals("hardDriveCapacity")) {
-                electronic[++i] = elementVal;
+                Laptop laptop = (Laptop) electronic;
+                laptop.setHardDriveCapacity(Double.parseDouble(elementVal));
             }
         }
         thisElement = new StringBuilder();

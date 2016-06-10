@@ -4,6 +4,9 @@ public class Laptop extends Electronic {
     private double diagonal;
     private double hardDriveCapacity;
 
+    public Laptop() {
+    }
+
     public Laptop(Integer id, String title, double price, double powerCapacity, double diagonal, double hardDriveCapacity) {
         super(id, title, price, powerCapacity);
         this.diagonal = diagonal;
@@ -30,6 +33,14 @@ public class Laptop extends Electronic {
 
     public double getHardDriveCapacity() {
         return hardDriveCapacity;
+    }
+
+    public void setDiagonal(double diagonal) {
+        this.diagonal = diagonal;
+    }
+
+    public void setHardDriveCapacity(double hardDriveCapacity) {
+        this.hardDriveCapacity = hardDriveCapacity;
     }
 
     @Override

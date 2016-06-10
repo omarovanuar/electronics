@@ -5,6 +5,9 @@ public class Fridge extends Electronic {
     private int sectionNumber;
     private double freezeTime;
 
+    public Fridge() {
+    }
+
     public Fridge(Integer id, String title, double price, double powerCapacity, String dimension, int sectionNumber, double freezeTime) {
         super(id, title, price, powerCapacity);
         this.dimension = dimension;
@@ -35,6 +38,18 @@ public class Fridge extends Electronic {
 
     public double getFreezeTime() {
         return freezeTime;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public void setSectionNumber(int sectionNumber) {
+        this.sectionNumber = sectionNumber;
+    }
+
+    public void setFreezeTime(double freezeTime) {
+        this.freezeTime = freezeTime;
     }
 
     @Override

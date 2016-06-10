@@ -4,6 +4,9 @@ public class TV extends Electronic {
     private double diagonal;
     private double brightness;
 
+    public TV() {
+    }
+
     public TV(Integer id, String title, double price, double powerCapacity, double diagonal, double brightness) {
         super(id, title, price, powerCapacity);
         this.diagonal = diagonal;
@@ -25,6 +28,14 @@ public class TV extends Electronic {
 
     public double getBrightness() {
         return brightness;
+    }
+
+    public void setDiagonal(double diagonal) {
+        this.diagonal = diagonal;
+    }
+
+    public void setBrightness(double brightness) {
+        this.brightness = brightness;
     }
 
     @Override

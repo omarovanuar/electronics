@@ -3,6 +3,9 @@ package com.epam.electronics.entity;
 public class VacuumCleaner extends Electronic {
     private double dustCollectorCapacity;
 
+    public VacuumCleaner() {
+    }
+
     public VacuumCleaner(Integer id, String title, double price, double powerCapacity, double dustCollectorCapacity) {
         super(id, title, price, powerCapacity);
         this.dustCollectorCapacity = dustCollectorCapacity;
@@ -23,6 +26,10 @@ public class VacuumCleaner extends Electronic {
 
     public double getDustCollectorCapacity() {
         return dustCollectorCapacity;
+    }
+
+    public void setDustCollectorCapacity(double dustCollectorCapacity) {
+        this.dustCollectorCapacity = dustCollectorCapacity;
     }
 
     @Override

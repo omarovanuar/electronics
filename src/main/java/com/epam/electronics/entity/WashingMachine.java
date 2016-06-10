@@ -5,6 +5,9 @@ public class WashingMachine extends Electronic {
     private int functionsNumber;
     private double maxLinenWeight;
 
+    public WashingMachine() {
+    }
+
     public WashingMachine(Integer id, String title, double price, double powerCapacity, String dimension, int functionsNumber, double maxLinenWeight) {
         super(id, title, price, powerCapacity);
         this.dimension = dimension;
@@ -35,6 +38,18 @@ public class WashingMachine extends Electronic {
 
     public double getMaxLinenWeight() {
         return maxLinenWeight;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public void setFunctionsNumber(int functionsNumber) {
+        this.functionsNumber = functionsNumber;
+    }
+
+    public void setMaxLinenWeight(double maxLinenWeight) {
+        this.maxLinenWeight = maxLinenWeight;
     }
 
     @Override

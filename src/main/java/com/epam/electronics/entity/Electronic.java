@@ -50,6 +50,22 @@ public abstract class Electronic {
         isPluggedIn = false;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setPowerCapacity(double powerCapacity) {
+        this.powerCapacity = powerCapacity;
+    }
+
     @Override
     public String toString() {
         return  "id = " + id +
