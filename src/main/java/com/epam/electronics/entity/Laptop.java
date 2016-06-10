@@ -1,7 +1,6 @@
 package com.epam.electronics.entity;
 
 public class Laptop extends Electronic {
-    private static final double CONSUMPTION_COEFFICIENT = 1.006;
     private double diagonal;
     private double hardDriveCapacity;
 
@@ -9,12 +8,20 @@ public class Laptop extends Electronic {
         super(id, title, price, powerCapacity);
         this.diagonal = diagonal;
         this.hardDriveCapacity = hardDriveCapacity;
+        consumptionCoefficient = 1.006;
     }
 
-    public void waitingMode() {}
+    public void waitingMode() {
+        System.out.println(getClass().getSimpleName() + ": " + getTitle() + "is waiting for you");
+    }
 
-    public double getConsumption() {
-        return getPowerCapacity() * CONSUMPTION_COEFFICIENT;
+    public double calculateConsumption() {
+        return getPowerCapacity() * consumptionCoefficient;
+    }
+
+    @Override
+    public String createFileData() {
+        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDiagonal() + ":" + getHardDriveCapacity();
     }
 
     public double getDiagonal() {

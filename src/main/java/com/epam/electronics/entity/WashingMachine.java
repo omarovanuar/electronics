@@ -1,7 +1,6 @@
 package com.epam.electronics.entity;
 
 public class WashingMachine extends Electronic {
-    private static final double CONSUMPTION_COEFFICIENT = 1.02;
     private String dimension;
     private int functionsNumber;
     private double maxLinenWeight;
@@ -11,12 +10,19 @@ public class WashingMachine extends Electronic {
         this.dimension = dimension;
         this.functionsNumber = functionsNumber;
         this.maxLinenWeight = maxLinenWeight;
+        consumptionCoefficient = 1.02;
     }
 
-    public void wash() {}
+    public void wash() {
+        System.out.println(getClass().getSimpleName() + ": " + getTitle() + "is washing your clothes");
+    }
 
-    public double getConsumption() {
-        return getPowerCapacity() * CONSUMPTION_COEFFICIENT;
+    public double calculateConsumption() {
+        return getPowerCapacity() * consumptionCoefficient;
+    }
+
+    public String createFileData() {
+        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDimension() + ":" + getFunctionsNumber() + ":" + getMaxLinenWeight();
     }
 
     public String getDimension() {

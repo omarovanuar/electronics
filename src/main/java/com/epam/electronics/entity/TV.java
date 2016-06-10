@@ -1,7 +1,6 @@
 package com.epam.electronics.entity;
 
 public class TV extends Electronic {
-    private static final double CONSUMPTION_COEFFICIENT = 1.022;
     private double diagonal;
     private double brightness;
 
@@ -9,12 +8,15 @@ public class TV extends Electronic {
         super(id, title, price, powerCapacity);
         this.diagonal = diagonal;
         this.brightness = brightness;
+        consumptionCoefficient = 1.022;
     }
 
-    public void turnOn() {}
+    public double calculateConsumption() {
+        return getPowerCapacity() * consumptionCoefficient;
+    }
 
-    public double getConsumption() {
-        return getPowerCapacity() * CONSUMPTION_COEFFICIENT;
+    public String createFileData() {
+        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDiagonal() + ":" + getBrightness();
     }
 
     public double getDiagonal() {

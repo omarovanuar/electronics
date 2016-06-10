@@ -1,18 +1,24 @@
 package com.epam.electronics.entity;
 
 public class VacuumCleaner extends Electronic {
-    private static final double CONSUMPTION_COEFFICIENT = 1.017;
     private double dustCollectorCapacity;
 
     public VacuumCleaner(Integer id, String title, double price, double powerCapacity, double dustCollectorCapacity) {
         super(id, title, price, powerCapacity);
         this.dustCollectorCapacity = dustCollectorCapacity;
+        consumptionCoefficient = 1.017;
     }
 
-    public void clean() {}
+    public void clean() {
+        System.out.println(getClass().getSimpleName() + ": " + getTitle() + "is cleaning your floors");
+    }
 
-    public double getConsumption() {
-        return getPowerCapacity() * CONSUMPTION_COEFFICIENT;
+    public double calculateConsumption() {
+        return getPowerCapacity() * consumptionCoefficient;
+    }
+
+    public String createFileData() {
+        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDustCollectorCapacity();
     }
 
     public double getDustCollectorCapacity() {

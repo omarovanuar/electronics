@@ -1,6 +1,7 @@
 package com.epam.electronics.entity;
 
 public abstract class Electronic {
+    double consumptionCoefficient;
     private Integer id;
     private String title;
     private double price;
@@ -17,7 +18,13 @@ public abstract class Electronic {
         this.powerCapacity = powerCapacity;
     }
 
-    public abstract double getConsumption();
+    public abstract double calculateConsumption();
+
+    public abstract String createFileData();
+
+    String createCommonFileData() {
+        return getId() + ":" + getTitle() + ":" + getPrice() + ":" + getPowerCapacity();
+    }
 
     public Integer getId() {
         return id;
@@ -39,8 +46,12 @@ public abstract class Electronic {
         return isPluggedIn;
     }
 
-    public void setPluggedIn(boolean pluggedIn) {
-        isPluggedIn = pluggedIn;
+    public void plugIn() {
+        isPluggedIn = true;
+    }
+
+    public void plugOff() {
+        isPluggedIn = false;
     }
 
     @Override
