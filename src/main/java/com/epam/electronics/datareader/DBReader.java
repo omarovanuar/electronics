@@ -12,7 +12,7 @@ import java.util.List;
 public class DBReader implements ReaderInterface {
     private static final String[] SQL_STATEMENT = {"SELECT * FROM fridge", "SELECT * FROM vacuum_cleaner", "SELECT * FROM washing_machine", "SELECT * FROM tv", "SELECT * FROM laptop"};
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/electronic_db";
+    private static final String URL = "jdbc:mysql://localhost:3306/electronic_db?useSSL=false";
     private static final String USER = "root";
     private static final String PASS = "adminroot";
 

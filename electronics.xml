@@ -1,7 +1,6 @@
 <electronics>
-    <electronic>
-        <type>Fridge</type>
-        <id>1</id>
+    <electronic type="Fridge">
+        <id>12</id>
         <title>Sony IHD43</title>
         <price>132.00</price>
         <powercapacity>31.00</powercapacity>
@@ -9,17 +8,15 @@
         <section>2</section>
         <freezetime>15</freezetime>
     </electronic>
-    <electronic>
-        <type>VacuumCleaner</type>
-        <id>2</id>
+    <electronic type="VacuumCleaner">
+        <id>13</id>
         <title>LG SDA(12)</title>
         <price>35.00</price>
         <powercapacity>3.50</powercapacity>
         <dustcc>2.5</dustcc>
     </electronic>
-    <electronic>
-        <type>WashingMachine</type>
-        <id>3</id>
+    <electronic type="WashingMachine">
+        <id>14</id>
         <title>Ariston OJS11</title>
         <price>78.00</price>
         <powercapacity>8.00</powercapacity>
@@ -27,18 +24,16 @@
         <functions>9</functions>
         <maxLinenWeight>4.5</maxLinenWeight>
     </electronic>
-    <electronic>
-        <type>TV</type>
-        <id>4</id>
+    <electronic type="TV">
+        <id>15</id>
         <title>LG LED Y7</title>
         <price>85.00</price>
         <powercapacity>15.00</powercapacity>
         <diagonal>75</diagonal>
         <brightness>200</brightness>
     </electronic>
-    <electronic>
-        <type>Laptop</type>
-        <id>5</id>
+    <electronic type="Laptop">
+        <id>16</id>
         <title>Acer 5995THY12</title>
         <price>999.00</price>
         <powercapacity>23.00</powercapacity>

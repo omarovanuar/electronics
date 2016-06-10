@@ -43,7 +43,6 @@ public class Utils {
             throw new NoElectronicsException();
         }
         Collections.sort(list, PRICE_COMPARATOR);
-        list.forEach(System.out::println);
     }
 
     public static void plugIn(List<Electronic> list) throws NoElectronicsException {
@@ -55,6 +54,7 @@ public class Utils {
             if (random.nextBoolean()) electronic.plugIn();
             else electronic.plugOff();
         }
+        list.forEach(System.out::println);
     }
 
 }

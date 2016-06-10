@@ -27,6 +27,7 @@ public class ElectronicSAXParser extends DefaultHandler{
         thisElement = new StringBuilder();
         if (qName.equals("electronic")) {
             i = 0;
+            electronic[i] = atts.getValue("type");
         }
     }
 
@@ -41,9 +42,7 @@ public class ElectronicSAXParser extends DefaultHandler{
             }
         } else {
             String elementVal = thisElement.toString();
-            if (qName.equals("type")) {
-                electronic[i] = elementVal;
-            } else if (qName.equals("id")) {
+            if (qName.equals("id")) {
                 electronic[++i] = elementVal;
             } else if (qName.equals("title")) {
                 electronic[++i] = elementVal;

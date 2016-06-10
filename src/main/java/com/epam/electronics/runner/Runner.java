@@ -1,38 +1,40 @@
 package com.epam.electronics.runner;
 
 import com.epam.electronics.datareader.DBReader;
-import com.epam.electronics.datareader.ReaderInterface;
 import com.epam.electronics.datareader.TxtFileReader;
 import com.epam.electronics.datareader.XMLReader;
 import com.epam.electronics.datawriter.TxtFileWriter;
 import com.epam.electronics.entity.Electronic;
-import com.epam.electronics.entity.ElectronicFactory;
-import com.epam.electronics.exception.InvalidNewItemException;
 import com.epam.electronics.exception.NoElectronicsException;
 import com.epam.electronics.exception.PowerCapacityRangeException;
 import com.epam.electronics.util.Utils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-// TODO: 6/10/2016 change runner without scanner
 public class Runner {
-    private static final String TXT_PATH = "electronics.txt";
+    private static final String TXT_READ_PATH = "electronics.txt";
+    private static final String TXT_WRITE_PATH = "electronics_result.txt";
     private static final String XML_PATH = "electronics.xml";
 
-    public static void main(String[] args) throws InvalidNewItemException {
+    public static void main(String[] args) {
         List<Electronic> list;
 
         try {
             list = new DBReader().readData();
-            list.addAll(new TxtFileReader(TXT_PATH).readData());
+            list.addAll(new TxtFileReader(TXT_READ_PATH).readData());
             list.addAll(new XMLReader(XML_PATH).readData());
+
             Utils.sortByPrice(list);
+            for (Electronic electronic : list) {
+                TxtFileWriter.writeData(electronic, TXT_WRITE_PATH);
+            }
+
             Utils.plugIn(list);
             Utils.calculateTotalConsumption(list);
+
             System.out.println("Type min of power capacity (W)");
             double min = new Scanner(System.in).nextDouble();
             System.out.println("Type max of power capacity (W)");
