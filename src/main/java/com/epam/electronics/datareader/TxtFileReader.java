@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TxtFileReader implements ReaderInterface {
-    private List<Electronic> electronics = new ArrayList<>();
     private String filePath;
 
     public TxtFileReader(String filePath) {
@@ -20,6 +19,7 @@ public class TxtFileReader implements ReaderInterface {
 
     @Override
     public List<Electronic> readData() {
+        List<Electronic> electronics = new ArrayList<>();
         String tempString;
         File file = new File(filePath);
         BufferedReader bufferedReader = null;
