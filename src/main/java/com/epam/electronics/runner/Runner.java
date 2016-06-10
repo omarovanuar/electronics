@@ -28,18 +28,18 @@ public class Runner {
 
         try {
             list = new DBReader().readData();
-            list.add(new XMLReader(XML_PATH).readData().get(0));
+            list.addAll(new TxtFileReader(TXT_PATH).readData());
+            list.addAll(new XMLReader(XML_PATH).readData());
             Utils.sortByPrice(list);
-            list.forEach(System.out::println);
             Utils.plugIn(list);
             Utils.calculateTotalConsumption(list);
-            System.out.println("Type min of consumption");
+            System.out.println("Type min of power capacity (W)");
             double min = new Scanner(System.in).nextDouble();
-            System.out.println("Type max of consumption");
+            System.out.println("Type max of power capacity (W)");
             double max = new Scanner(System.in).nextDouble();
             Utils.findByPowerCapacityRange(min, max, list);
         } catch (InputMismatchException e) {
-            System.out.println("Incorrect value! Please, try again!");
+            System.out.println("Incorrect value!");
         } catch (PowerCapacityRangeException | NoElectronicsException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
