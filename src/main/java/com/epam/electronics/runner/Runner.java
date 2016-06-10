@@ -20,7 +20,8 @@ import java.util.Scanner;
 
 // TODO: 6/10/2016 change runner without scanner
 public class Runner {
-    private static final String FILE_PATH = "electronics.txt";
+    private static final String TXT_PATH = "electronics.txt";
+    private static final String XML_PATH = "electronics.xml";
 
     public static void main(String[] args) throws InvalidNewItemException {
         boolean repeat = true;
@@ -51,7 +52,7 @@ public class Runner {
                         break;
 
                     case 1:
-                        reader = new TxtFileReader(FILE_PATH);
+                        reader = new TxtFileReader(TXT_PATH);
                         list = reader.readData();
                         break;
 
@@ -61,14 +62,14 @@ public class Runner {
                         break;
 
                     case 3:
-                        reader = new XMLReader();
+                        reader = new XMLReader(XML_PATH);
                         list = reader.readData();
                         break;
 
                     case 4:
                         Electronic electronicFromInput = ElectronicFactory.createFromInput();
                         list.add(electronicFromInput);
-                        TxtFileWriter.writeData(electronicFromInput, FILE_PATH);
+                        TxtFileWriter.writeData(electronicFromInput, TXT_PATH);
                         break;
 
                     case 5:

@@ -21,7 +21,7 @@ public class Laptop extends Electronic {
 
     @Override
     public String createFileData() {
-        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDiagonal() + ":" + getHardDriveCapacity();
+        return ":" + getDiagonal() + ":" + getHardDriveCapacity();
     }
 
     public double getDiagonal() {

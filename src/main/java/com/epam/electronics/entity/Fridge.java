@@ -22,7 +22,7 @@ public class Fridge extends Electronic {
     }
 
     public String createFileData() {
-        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDimension() + ":" + getSectionNumber() + ":" + getFreezeTime();
+        return ":" + getDimension() + ":" + getSectionNumber() + ":" + getFreezeTime();
     }
 
     public String getDimension() {

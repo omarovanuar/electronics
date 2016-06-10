@@ -1,6 +1,7 @@
 package com.epam.electronics.entity;
 
 import com.epam.electronics.exception.InvalidNewItemException;
+import com.epam.electronics.electronic_name.Name;
 
 import java.io.IOException;
 import java.util.Scanner;

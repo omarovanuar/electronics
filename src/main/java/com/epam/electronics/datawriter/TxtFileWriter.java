@@ -8,11 +8,16 @@ import java.io.IOException;
 
 public class TxtFileWriter {
 
-    public static void writeData(Electronic electronicFromInput, String filePath) throws IOException {
+    public static void writeData(Electronic electronic, String filePath) throws IOException {
         File file = new File(filePath);
         FileWriter fileWriter = new FileWriter(file, true);
 
-        fileWriter.write("\n" + electronicFromInput.createFileData());
+        fileWriter.write("\n" + electronic.getClass().getSimpleName() +
+                electronic.getId() + ":" +
+                electronic.getTitle() + ":" +
+                electronic.getPrice() + ":" +
+                electronic.getPowerCapacity() + ":" +
+                electronic.createFileData());
         fileWriter.close();
     }
 }

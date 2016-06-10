@@ -30,7 +30,7 @@ public class XMLReader implements ReaderInterface {
             handler = new ElectronicSAXParser();
             sp.parse(new File(filePath), handler);
             list = handler.getList();
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException | IndexOutOfBoundsException e) {
             System.out.println("Parsing fails: " + e.getMessage());
         }
 

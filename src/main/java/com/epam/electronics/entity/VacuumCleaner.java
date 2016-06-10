@@ -18,7 +18,7 @@ public class VacuumCleaner extends Electronic {
     }
 
     public String createFileData() {
-        return getClass().getSimpleName() + ":" + createCommonFileData() + ":" + getDustCollectorCapacity();
+        return ":" + getDustCollectorCapacity();
     }
 
     public double getDustCollectorCapacity() {

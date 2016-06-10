@@ -22,10 +22,6 @@ public abstract class Electronic {
 
     public abstract String createFileData();
 
-    String createCommonFileData() {
-        return getId() + ":" + getTitle() + ":" + getPrice() + ":" + getPowerCapacity();
-    }
-
     public Integer getId() {
         return id;
     }
