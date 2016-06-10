@@ -24,97 +24,27 @@ public class Runner {
     private static final String XML_PATH = "electronics.xml";
 
     public static void main(String[] args) throws InvalidNewItemException {
-        boolean repeat = true;
+        List<Electronic> list;
 
-        List<Electronic> list = new ArrayList<>();
-        ReaderInterface reader;
-
-        while(repeat) {
-            System.out.println("1: read from file");
-            System.out.println("2: read from h2");
-            System.out.println("3: read from xml");
-            System.out.println("4: add new electronic to the list");
-            System.out.println("5: sort list by price");
-            System.out.println("6: find electronics by consumption range");
-            System.out.println("7: plug in some electronics");
-            System.out.println("8: calculate total consumption");
-            System.out.println("9: show list");
-            System.out.println("0: exit");
-
-            try {
-                Scanner scanner = new Scanner(System.in);
-                int action = scanner.nextInt();
-
-                switch (action) {
-                    case 0:
-                        repeat = false;
-                        System.out.println("Completed!");
-                        break;
-
-                    case 1:
-                        reader = new TxtFileReader(TXT_PATH);
-                        list = reader.readData();
-                        break;
-
-                    case 2:
-                        reader = new DBReader();
-                        list = reader.readData();
-                        break;
-
-                    case 3:
-                        reader = new XMLReader(XML_PATH);
-                        list = reader.readData();
-                        break;
-
-                    case 4:
-                        Electronic electronicFromInput = ElectronicFactory.createFromInput();
-                        list.add(electronicFromInput);
-                        TxtFileWriter.writeData(electronicFromInput, TXT_PATH);
-                        break;
-
-                    case 5:
-                        Utils.sortByPrice(list);
-                        break;
-
-                    case 6:
-                        System.out.println("Type min of consumption");
-                        double min = new Scanner(System.in).nextDouble();
-                        System.out.println("Type max of consumption");
-                        double max = new Scanner(System.in).nextDouble();
-                        Utils.findByPowerCapacityRange(min, max, list);
-                        break;
-
-                    case 7:
-                        Utils.plugIn(list);
-                        break;
-
-                    case 8:
-                        Utils.calculateTotalConsumption(list);
-                        break;
-
-                    case 9:
-                        if (list.isEmpty()) {
-                            throw new NoElectronicsException();
-                        }
-                        for (Electronic entity : list) {
-                            System.out.println(entity.toString());
-                        }
-                        break;
-
-                    default:
-                        System.out.println("Incorrect value! Please, try again!");
-                        break;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Incorrect value! Please, try again!");
-            } catch (InvalidNewItemException | PowerCapacityRangeException | NoElectronicsException e) {
-                System.out.println(e.getMessage());
-            } catch (IOException e) {
-                System.out.println("Something is wrong with your IO");
-            }
-
+        try {
+            list = new DBReader().readData();
+            list.add(new XMLReader(XML_PATH).readData().get(0));
+            Utils.sortByPrice(list);
+            list.forEach(System.out::println);
+            Utils.plugIn(list);
+            Utils.calculateTotalConsumption(list);
+            System.out.println("Type min of consumption");
+            double min = new Scanner(System.in).nextDouble();
+            System.out.println("Type max of consumption");
+            double max = new Scanner(System.in).nextDouble();
+            Utils.findByPowerCapacityRange(min, max, list);
+        } catch (InputMismatchException e) {
+            System.out.println("Incorrect value! Please, try again!");
+        } catch (PowerCapacityRangeException | NoElectronicsException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Something is wrong with your IO");
         }
-
     }
 
 }
