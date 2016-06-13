@@ -26,7 +26,7 @@ public class TxtFileReader implements ReaderInterface {
         try {
             bufferedReader = new BufferedReader(new FileReader(file));
             while ((tempString = bufferedReader.readLine()) != null) {
-                String[] strings = tempString.split(":");
+                String[] strings = tempString.split(";");
                 electronics.add(ElectronicFactory.createElectronic(strings));
             }
         } catch (IndexOutOfBoundsException e) {

@@ -2,12 +2,10 @@ package com.epam.electronics.parser;
 
 import com.epam.electronics.entity.*;
 import com.epam.electronics.entity.electronic_name.Name;
-import com.epam.electronics.exception.InvalidNewItemException;
-import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

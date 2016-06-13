@@ -2,14 +2,22 @@ package com.epam.electronics.datareader;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 class DBUtil {
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/electronic_db?useSSL=false";
-    private static final String USER = "root";
-    private static final String PASS = "adminroot";
+    private static ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
+    private static final String DRIVER;
+    private static final String URL;
+    private static final String USER;
+    private static final String PASS;
+
+    static {
+        DRIVER = resourceBundle.getString("driver");
+        URL = resourceBundle.getString("URL");
+        USER = resourceBundle.getString("user");
+        PASS = resourceBundle.getString("password");
+    }
 
     static Connection getConnection() {
         try {
