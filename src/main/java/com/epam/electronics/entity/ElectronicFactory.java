@@ -5,7 +5,7 @@ import com.epam.electronics.entity.electronic_name.Name;
 import java.io.IOException;
 
 public class ElectronicFactory {
-    public static Electronic createFromFile(String[] strings) throws IOException {
+    public static Electronic createElectronic(String[] strings) throws IOException {
         Electronic electronic;
         int i = 1;
         switch (Name.valueOf(strings[0].toUpperCase())) {

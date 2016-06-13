@@ -9,7 +9,7 @@ import java.util.*;
 public class Utils {
     private static final Comparator<Electronic> PRICE_COMPARATOR = (o1, o2) -> o1.getPrice().compareTo(o2.getPrice());
 
-    public static void findByPowerCapacityRange(double min, double max, List<Electronic> list) throws NoElectronicsException, PowerCapacityRangeException {
+    public static List<Electronic> findByPowerCapacityRange(double min, double max, List<Electronic> list) throws NoElectronicsException, PowerCapacityRangeException {
         if (list.isEmpty()) {
             throw new NoElectronicsException();
         }
@@ -22,7 +22,7 @@ public class Utils {
         if (result.isEmpty()) {
             throw new PowerCapacityRangeException(min, max);
         }
-        result.forEach(System.out::println);
+        return result;
     }
 
     public static void calculateTotalConsumption(List<Electronic> list) throws NoElectronicsException {

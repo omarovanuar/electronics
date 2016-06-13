@@ -12,11 +12,12 @@ public class TxtFileWriter {
         File file = new File(filePath);
         FileWriter fileWriter = new FileWriter(file, true);
 
-        fileWriter.write("\n" + electronic.getClass().getSimpleName() +
-                electronic.getId() + ":" +
-                electronic.getTitle() + ":" +
-                electronic.getPrice() + ":" +
-                electronic.getPowerCapacity() + ":" +
+
+        fileWriter.write("\n" + electronic.getClass().getSimpleName() + ";" +
+                electronic.getId() + ";" +
+                electronic.getTitle() + ";" +
+                electronic.getPrice() + ";" +
+                electronic.getPowerCapacity() + ";" +
                 electronic.createFileData());
         fileWriter.close();
     }

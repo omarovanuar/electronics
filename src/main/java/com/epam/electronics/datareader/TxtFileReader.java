@@ -27,7 +27,7 @@ public class TxtFileReader implements ReaderInterface {
             bufferedReader = new BufferedReader(new FileReader(file));
             while ((tempString = bufferedReader.readLine()) != null) {
                 String[] strings = tempString.split(":");
-                electronics.add(ElectronicFactory.createFromFile(strings));
+                electronics.add(ElectronicFactory.createElectronic(strings));
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Parameters of current Electronic is incorrect");

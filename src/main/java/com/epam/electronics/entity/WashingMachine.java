@@ -25,7 +25,7 @@ public class WashingMachine extends Electronic {
     }
 
     public String createFileData() {
-        return ":" + getDimension() + ":" + getFunctionsNumber() + ":" + getMaxLinenWeight();
+        return getDimension() + ";" + getFunctionsNumber() + ";" + getMaxLinenWeight();
     }
 
     public String getDimension() {

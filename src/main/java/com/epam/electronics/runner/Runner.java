@@ -28,9 +28,6 @@ public class Runner {
             list.addAll(new XMLReader(XML_PATH).readData());
 
             Utils.sortByPrice(list);
-            for (Electronic electronic : list) {
-                TxtFileWriter.writeData(electronic, TXT_WRITE_PATH);
-            }
 
             Utils.plugIn(list);
             Utils.calculateTotalConsumption(list);
@@ -39,7 +36,13 @@ public class Runner {
             double min = new Scanner(System.in).nextDouble();
             System.out.println("Type max of power capacity (W)");
             double max = new Scanner(System.in).nextDouble();
-            Utils.findByPowerCapacityRange(min, max, list);
+            List<Electronic> searchResult = Utils.findByPowerCapacityRange(min, max, list);
+            searchResult.forEach(System.out::println);
+
+            for (Electronic electronic : searchResult) {
+                TxtFileWriter.writeData(electronic, TXT_WRITE_PATH);
+            }
+
         } catch (InputMismatchException e) {
             System.out.println("Incorrect value!");
         } catch (PowerCapacityRangeException | NoElectronicsException e) {

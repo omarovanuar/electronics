@@ -55,56 +55,73 @@ public class ElectronicSAXParser extends DefaultHandler{
     @Override
     public void endElement(String namespaceURI, String localName, String qName)
             throws SAXException {
-        if (qName.equals("electronic")) {
+        String elementVal = thisElement.toString();
+        switch (qName) {
+            case "electronic":
                 list.add(electronic);
-        } else {
-            String elementVal = thisElement.toString();
-            if (qName.equals("id")) {
+                break;
+            case "id":
                 electronic.setId(Integer.parseInt(elementVal));
-            } else if (qName.equals("title")) {
+                break;
+            case "title":
                 electronic.setTitle(elementVal);
-            } else if (qName.equals("price")) {
+                break;
+            case "price":
                 electronic.setPrice(Double.parseDouble(elementVal));
-            } else if (qName.equals("powercapacity")) {
+                break;
+            case "powercapacity":
                 electronic.setPowerCapacity(Double.parseDouble(elementVal));
-            } else if (qName.equals("dimension")) {
+                break;
+            case "dimension":
+                Fridge fridge;
+                WashingMachine washingMachine;
                 if (type.equals(FRIDGE)) {
-                    Fridge fridge = (Fridge) electronic;
+                    fridge = (Fridge) electronic;
                     fridge.setDimension(elementVal);
-                } else if (type.equals(WASHINGMACHINE)){
-                    WashingMachine washingMachine = (WashingMachine) electronic;
+                } else if (type.equals(WASHINGMACHINE)) {
+                    washingMachine = (WashingMachine) electronic;
                     washingMachine.setDimension(elementVal);
                 }
-            } else if (qName.equals("section")) {
-                Fridge fridge = (Fridge) electronic;
+                break;
+            case "section":
+                fridge = (Fridge) electronic;
                 fridge.setSectionNumber(Integer.parseInt(elementVal));
-            } else if (qName.equals("freezetime")) {
-                Fridge fridge = (Fridge) electronic;
+                break;
+            case "freezetime":
+                fridge = (Fridge) electronic;
                 fridge.setFreezeTime(Double.parseDouble(elementVal));
-            } else if (qName.equals("dustcc")) {
+                break;
+            case "dustcc":
                 VacuumCleaner vacuumCleaner = (VacuumCleaner) electronic;
                 vacuumCleaner.setDustCollectorCapacity(Double.parseDouble(elementVal));
-            } else if (qName.equals("functions")) {
-                WashingMachine washingMachine = (WashingMachine) electronic;
+                break;
+            case "functions":
+                washingMachine = (WashingMachine) electronic;
                 washingMachine.setFunctionsNumber(Integer.parseInt(elementVal));
-            } else if (qName.equals("maxLinenWeight")) {
-                WashingMachine washingMachine = (WashingMachine) electronic;
+                break;
+            case "maxLinenWeight":
+                washingMachine = (WashingMachine) electronic;
                 washingMachine.setMaxLinenWeight(Double.parseDouble(elementVal));
-            } else if (qName.equals("diagonal")) {
+                break;
+            case "diagonal":
+                TV tv;
+                Laptop laptop;
                 if (type.equals(TV)) {
-                    TV tv = (TV) electronic;
+                    tv = (TV) electronic;
                     tv.setDiagonal(Double.parseDouble(elementVal));
                 } else if (type.equals(LAPTOP)){
-                    Laptop laptop = (Laptop) electronic;
+                    laptop = (Laptop) electronic;
                     laptop.setDiagonal(Double.parseDouble(elementVal));
                 }
-            } else if (qName.equals("brightness")) {
-                TV tv = (TV) electronic;
+                break;
+            case "brightness":
+                tv = (TV) electronic;
                 tv.setBrightness(Double.parseDouble(elementVal));
-            } else if (qName.equals("hardDriveCapacity")) {
-                Laptop laptop = (Laptop) electronic;
+                break;
+            case "hardDriveCapacity":
+                laptop = (Laptop) electronic;
                 laptop.setHardDriveCapacity(Double.parseDouble(elementVal));
-            }
+                break;
         }
         thisElement = new StringBuilder();
     }

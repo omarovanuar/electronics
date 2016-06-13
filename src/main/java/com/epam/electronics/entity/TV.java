@@ -19,7 +19,7 @@ public class TV extends Electronic {
     }
 
     public String createFileData() {
-        return ":" + getDiagonal() + ":" + getBrightness();
+        return getDiagonal() + ";" + getBrightness();
     }
 
     public double getDiagonal() {

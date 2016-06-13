@@ -25,7 +25,7 @@ public class Fridge extends Electronic {
     }
 
     public String createFileData() {
-        return ":" + getDimension() + ":" + getSectionNumber() + ":" + getFreezeTime();
+        return getDimension() + ";" + getSectionNumber() + ";" + getFreezeTime();
     }
 
     public String getDimension() {
